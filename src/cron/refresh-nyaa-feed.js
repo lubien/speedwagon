@@ -41,7 +41,7 @@ async function refreshNyaaFeed() {
 }
 
 export default {
-	tab: '*/1 * * * *',
+	tab: '*/15 * * * *',
 	callback: refreshNyaaFeed,
 };
 
