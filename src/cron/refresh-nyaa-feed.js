@@ -22,7 +22,7 @@ async function refreshNyaaFeed() {
 			.reverse()
 		);
 
-	feed.forEach(anime =>
+	await Promise.all(feed.map(anime =>
 		bot.sendMessage(MY_TELEGRAM_ID, anime.title, {
 			reply_markup: {
 				inline_keyboard: [
@@ -33,11 +33,12 @@ async function refreshNyaaFeed() {
 				]
 			}
 		})
-	);
+	));
 
 	const lastItem = feed.pop();
 
 	db.set('latestNyaaTorrent', lastItem ? lastItem.date : latestNyaaTorrent).value();
+	//db.set('latestNyaaTorrent', 1475985050000).value();
 }
 
 export default {
